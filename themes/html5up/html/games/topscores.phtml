@@ -1,0 +1,21 @@
+<tr>
+    <td style="width:15%;border-bottom:1px dotted #999;">News</td>
+</tr>
+<tr>
+    <td>
+        <ul>
+            <?php foreach($overallTopScores as $overallTopScore) { ?>
+                <li>
+                    <?php echo $overallTopScore[0]['game_id']; ?>
+                    -
+                    <?php echo $overallTopScore[0]['score']; ?>
+                    -
+                    <?php echo $overallTopScore[0]['user']; ?>
+                    -
+                    <?php echo DateFormatHelper::RFC822($overallTopScore[0]['created']); ?>
+                </li>
+            <?php } ?>
+        </ul>
+
+    </td>
+</tr>

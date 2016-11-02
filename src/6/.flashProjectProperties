@@ -1,0 +1,25 @@
+<projectDescription>
+  <id>1232303963493</id>
+  <name>8</name>
+  <asVersion>0</asVersion>
+  <boundTemplate>file:///C|/Dokumente und Einstellungen/Administrator/Lokale Einstellungen/Anwendungsdaten/Adobe/Flash CS4/en/Configuration/Project/templates/boundClass_as3.as</boundTemplate>
+  <classTemplate>file:///C|/Dokumente und Einstellungen/Administrator/Lokale Einstellungen/Anwendungsdaten/Adobe/Flash CS4/en/Configuration/Project/templates/standardClass_as3.as</classTemplate>
+  <classPath>.</classPath>
+  <defaultApp/>
+  <rootURI>file:///C|/Programme/Apache%20Software%20Foundation/Apache2.2/htdocs/games.dschini.org/src/6/</rootURI>
+  <flexSDK/>
+  <sources editable="false"/>
+  <libraries editable="false"/>
+  <externalLibraries editable="false"/>
+  <compileList editable="false"/>
+  <recentFiles editable="false">
+    <uri label="game.as">file:///C|/Programme/Apache Software Foundation/Apache2.2/htdocs/games.dschini.org/src/6/game.as</uri>
+    <uri label="Board.as">file:///C|/Programme/Apache Software Foundation/Apache2.2/htdocs/games.dschini.org/src/6/Board.as</uri>
+    <uri label="GreenFlag.as">file:///C|/Programme/Apache Software Foundation/Apache2.2/htdocs/games.dschini.org/src/6/GreenFlag.as</uri>
+    <uri label="Win.as">file:///C|/Programme/Apache Software Foundation/Apache2.2/htdocs/games.dschini.org/src/6/Win.as</uri>
+    <uri label="End.as">file:///C|/Programme/Apache Software Foundation/Apache2.2/htdocs/games.dschini.org/src/6/End.as</uri>
+    <uri label="Map.as">file:///C|/Programme/Apache Software Foundation/Apache2.2/htdocs/games.dschini.org/src/6/Map.as</uri>
+    <uri label="World.as">file:///C|/Programme/Apache Software Foundation/Apache2.2/htdocs/games.dschini.org/src/6/World.as</uri>
+  </recentFiles>
+  <locations editable="false"/>
+</projectDescription>

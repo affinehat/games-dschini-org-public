@@ -1,0 +1,39 @@
+<?php include_once($theme."/html/header.phtml");?>
+
+<div id="sub-page">
+
+<div id="content-wrap">
+ <div id="content">
+  <div class="gap">
+
+   <!-- start -->
+<div class="formin"> 
+  <p>
+    <h2 style="padding-top:10px;border-bottom:1px dotted #ccc;">OK</h2>
+  </p>
+  <p>
+  	Your account is activated!
+  </p>
+  <p>
+	Your login data has been sent to you.
+  </p>
+  <script type="text/javascript">
+  	function next(){
+	  	window.location.href = '/login/';
+  	}
+  	window.setTimeout("next()", 3000);
+  	</script>
+</div> 
+   <!-- end -->
+
+  </div>
+ </div>
+</div>
+
+<?php include_once($theme."/html/accounts/sidebar.phtml");?>
+
+<br class="clear" />
+</div>
+</div>
+
+<?php include_once($theme."/html/footer.phtml");?>

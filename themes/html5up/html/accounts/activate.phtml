@@ -1,0 +1,43 @@
+<?php include_once($theme."/html/header.phtml");?>
+
+<!-- Main Wrapper -->
+<div id="main-wrapper">
+    <div class="container">
+        <div class="row">
+            <div class="4u">
+
+                <!-- Sidebar -->
+                <div id="sidebar">
+                    <section class="widget-links">
+                        <h3>Related Options</h3>
+                        <div class="grid">
+                            <div class="row no-collapse half">
+                                <div class="9u"><a class="button" href="/login/">Sign in</a></div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+
+            </div>
+            <div class="8u">
+
+                <!-- Content -->
+                <div id="content">
+                    <section class="last">
+                        <h2>OK</h2>
+                        <p>Your account is activated! Your login data has been sent to you.</p>
+                    </section>
+                    <script type="text/javascript">
+                        function next(){
+                            window.location.href = '/login/';
+                        }
+                        window.setTimeout("next()", 3000);
+                    </script>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<?php include_once($theme."/html/footer.phtml");?>

@@ -1,0 +1,15 @@
+<tr>
+    <td>
+        <ul>
+            <?php foreach($latestAccounts as $latestAccount) { ?>
+                <li>
+                    <a class="fa fa-user" href="/player/<?php echo $latestAccount->username; ?>/"> <?php echo $latestAccount->username; ?></a>
+                    <?php echo AvatarHelper::imglevel($latestAccount->points); ?>
+                    -
+                    <?php echo DateFormatHelper::niceShort($latestAccount->created); ?>
+                </li>
+            <?php } ?>
+        </ul>
+
+    </td>
+</tr>

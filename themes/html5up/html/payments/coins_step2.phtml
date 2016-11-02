@@ -1,0 +1,44 @@
+<?php include_once($theme."/html/header.phtml");?>
+
+<!-- Main Wrapper -->
+<div id="main-wrapper">
+    <div class="container">
+        <div class="row">
+
+
+            <div class="12u skel-cell-important">
+
+                <!-- Content -->
+                <div id="content">
+                    <section class="last">
+                        <h2>One more click</h2>
+                        Please review and approve the following order!
+
+                        <div class="superflow" style="width:100%;">
+
+                            <div class="box" style="float:left;">
+                                <div style="margin-right:10px;">
+                                    <div style="width:300px;padding:10px;border:1px dotted #666666;background-color:#eeeeee;">
+                                        <h3 style="padding:2px;">Your order:</h3>
+                                        <form action="/coins/step3/">
+                                            <p>
+                                                Order: <?php echo $paypal['custom']; ?>
+                                                <br/>
+                                                Total: <?php echo $paypal['paymentAmount']; ?> <?php echo $paypal['currCodeType']; ?>
+                                            </p>
+                                            <input type="submit" value="Pay now" style="padding:5px;" />
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<?php include_once($theme."/html/footer.phtml");?>

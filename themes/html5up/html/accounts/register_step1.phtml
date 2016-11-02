@@ -1,0 +1,103 @@
+<?php include_once($theme."/html/header.phtml");?>
+
+<!-- Main Wrapper -->
+<div id="main-wrapper">
+    <div class="container">
+        <div class="row">
+            <div class="4u">
+
+                <!-- Sidebar -->
+                <div id="sidebar">
+                    <section class="widget-links">
+                        <h3>Related Options</h3>
+                        <div class="grid">
+                            <div class="row no-collapse half">
+                                <div class="9u"><a class="button" href="/lostpassword/">Reset password</a></div>
+                            </div>
+                            <div class="row no-collapse half">
+                                <div class="9u"><a class="button" href="/login/">Sign in</a></div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+
+            </div>
+            <div class="8u">
+
+                <!-- Content -->
+                <div id="content">
+                    <section class="last">
+
+                        <h2>Create your account</h2>
+
+                        <form id="form" method="post">
+
+                            <div class="header">
+                                <?php
+                                $style=' style="" ';
+                                ?>
+                                <?php if(count($error)>0){ ?>
+                                    <h3>Ooops!</h3>
+                                    <?php
+                                        if(isset($error)){
+                                            $style=' style="background:#ff0000;" ';
+                                    ?>
+                                        <h2 style="color: #ff0000;"><?php echo $error; ?></h2>
+                                    <?php } ?>
+                                <?php } ?>
+
+                                <h3>Sign Up</h3>
+                                <p>
+                                    By creating an account you'll be able to participate in the monthly Highscore tournament.
+                                    Please enter a username and your email. A valid email is required to activate the new account.
+                                </p>
+
+                            </div>
+
+                            <div class="sep"></div>
+
+                            <div class="inputs">
+
+                                <div>
+                                    <input type="text" name="user" <?php echo $style; ?> placeholder="Username" value="<?php echo $user; ?>" autofocus />
+                                </div>
+
+                                <div>
+                                    <input type="email" name="email" <?php echo $style; ?> placeholder="E-Mail" value="<?php echo $email; ?>" />
+                                </div>
+
+                                <div class="checkboxy">
+                                    <label for="informme"><input type="checkbox" name="informme" id="informme" />
+                                        I'd like to receive updates via email on new features, games and more.</label>
+                                </div>
+                                <br/>
+
+                                <div>
+                                    <input type="hidden" name="nr1" id="nr1" value="<?php echo $nr1; ?>" />
+                                    <input type="hidden" name="nr2" id="nr2" value="<?php echo $nr2; ?>" />
+                                    <input type="text" name="total" id="total" <?php echo $style; ?> placeholder="<?php echo $nr1; ?> + <?php echo $nr2; ?> =" />
+                                    <br/>
+                                </div>
+                                <div>
+                                    By clicking "Sign Up", you agree to adhere to our <a target="_blank" href="/termsconditions/" style="text-decoration:underline;">Terms & Conditions</a>.
+                                    We will not share your personal information with third parties for their marketing purposes.
+                                </div>
+
+
+                                <div>
+                                    <input type="submit" class="button" value="Sign up">
+                                </div>
+
+                            </div>
+
+                        </form>
+
+                    </section>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<?php include_once($theme."/html/footer.phtml");?>

@@ -1,0 +1,135 @@
+<?php include_once($theme."/html/header.phtml");?>
+<?php
+$colours = array('007AFF','FF7000','FF7000','15E25F','CFC700','CFC700','CF1100','CF00BE','F00');
+$user_colour = array_rand($colours);
+?>
+<style type="text/css">
+    <!--
+    .chat_wrapper {
+        width: 100%;
+        margin-right: auto;
+        margin-left: auto;
+        padding: 10px;
+        font: 18px 'lucida grande',tahoma,verdana,arial,sans-serif;
+    }
+    .chat_wrapper .message_box {
+        background: #FFFFFF;
+        height: 450px;
+        overflow: auto;
+        padding: 10px;
+    }
+    .chat_wrapper .panel input{
+        padding: 2px 2px 2px 5px;
+    }
+    .system_msg{color: #BDBDBD;font-style: italic;}
+    .user_name{font-weight:bold;}
+    .user_message{color: #88B6E0;}
+    -->
+</style>
+<!-- Main Wrapper -->
+<div id="main-wrapper">
+    <div class="container">
+        <div class="row">
+            <div class="12u">
+
+                <!-- Box -->
+                <section class="box">
+                    <div class="inner">
+                        <header>
+                            <h2 class="fa fa-2x fa-weixin"> Chat</h2>
+                            <!--<span class="byline">This is also an interesting subtitle</span>-->
+                        </header>
+                        <div class="chat_wrapper">
+                            <div class="message_box" id="message_box"></div>
+                            <div class="panel">
+                                <input type="text" name="message" style="height:48px;width:84%;" id="message" placeholder="Type your message here..." maxlength="250" style="width:60%" />
+                                <button id="send-btn" class="button" style="width:14%;">Send</button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Features Wrapper -->
+<div id="features-wrapper">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</div>
+
+<?php include_once($theme."/html/footer.phtml");?>
+
+<script language="javascript" type="text/javascript">
+    $(document).ready(function(){
+        var stack = [];
+        //create a new WebSocket object.
+        var wsUri = "ws://<?php echo $_SERVER['SERVER_NAME']; ?>:9000/demo/server.php";
+        websocket = new WebSocket(wsUri);
+
+        websocket.onopen = function(ev) { // connection is open
+            $('#message_box').append("<div class=\"system_msg\">Connected!</div>"); //notify user
+        }
+
+        $('#message').keydown(function (e) {
+            if (e.which == 13) {
+                $('#send-btn').click();
+                return false;
+            } else if (e.which == 38) {
+                current_stack = stack[0];
+                stack.push(stack.shift());
+                $('#message').val(current_stack);
+            } else if (e.which == 40) {
+            } else {}
+        });
+        $('#send-btn').on('click', function() {
+            var mymessage = $('#message').val();
+
+            if(mymessage == ""){ //emtpy message?
+                alert("Enter Some message Please!");
+                return;
+            }
+
+            stack.push(mymessage);
+            if(stack.length >5 ){
+                stack.shift();
+            }
+
+
+            //prepare json data
+            var msg = {
+                message: mymessage,
+                name: '<?php echo $_SESSION['user']; ?>',
+                color : '<?php echo $colours[$user_colour]; ?>'
+            };
+            //convert and send data to server
+            websocket.send(JSON.stringify(msg));
+        });
+
+        websocket.onmessage = function(ev) {
+            var msg = JSON.parse(ev.data); //PHP sends Json data
+            var type = msg.type; //message type
+            var umsg = msg.message; //message text
+            var uname = msg.name; //user name
+            var ucolor = msg.color; //color
+
+            if(type == 'usermsg')
+            {
+                $('#message_box').append("<div><span class=\"user_name\" style=\"color:#"+ucolor+"\">"+uname+"</span> : <span class=\"user_message\">"+umsg+"</span></div>");
+            }
+            if(type == 'system')
+            {
+                $('#message_box').append("<div class=\"system_msg\">"+umsg+"</div>");
+            }
+            var elem = document.getElementById('message_box');
+            elem.scrollTop = elem.scrollHeight;
+            $('#message').val('');
+        };
+
+        websocket.onerror	= function(ev){$('#message_box').append("<div class=\"system_error\">Error Occurred - "+ev.data+"</div>");};
+        websocket.onclose 	= function(ev){$('#message_box').append("<div class=\"system_msg\">Connection Closed</div>");};
+    });
+</script>

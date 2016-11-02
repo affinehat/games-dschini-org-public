@@ -1,0 +1,56 @@
+<?php $month = date('F'); ?>
+<tr>
+    <td>
+        <ul>
+            <?php
+            foreach($logs as $log){
+                ?>
+                <?php
+                $value = unserialize($log->value);
+                switch($log->type){
+                    case LogsProxy::$TYPE_EARNEDPOINTS:
+                        ?>
+
+                        <li>
+                            <?php echo $value[0]; ?>
+                            earned
+                            <?php echo $value[2]; ?>
+                            point<?php echo $value[2]>1?'s':''; ?>
+
+                            <img src="/img/star.gif" title="<?php echo $value[2]; ?>" />
+                        </li>
+
+                        <?php
+                        break;
+                    case LogsProxy::$TYPE_SAVESCORE:
+                        ?>
+                        <li>
+                            <?php echo $value[0]; ?>
+                            <?php
+                            if(($value[1]==8||$value[1]==7||$value[1]==6 )&& $value[2]>=11){
+                                echo ' has won ';
+                            } else{
+                                echo ' reached level ' . $value[2] . ' in ';
+                            }
+                            switch($value[1]){
+                                case 1: echo '<a href="/game/1/">Find the Bug</a>'; break;
+                                case 2: echo '<a href="/game/2/">Find the Bang</a>'; break;
+                                case 3: echo '<a href="/game/3/">Find the Art</a>'; break;
+                                case 4: echo '<a href="/game/4/">Memory Mania</a>'; break;
+                                case 5: echo '<a href="/game/5/">Find the Sun</a>'; break;
+                                case 6: echo '<a href="/game/6/">Globetrotter XL</a>'; break;
+                                case 7: echo '<a href="/game/7/">Globetrotter</a>'; break;
+                                case 8: echo '<a href="/game/8/">Hippopotamus</a>'; break;
+                                case 10: echo '<a href="/game/10/">Binary</a>'; break;
+                            }
+                            ?>
+                        </li>
+                        <?php
+                        break;
+                }
+            }
+            ?>
+        </ul>
+
+    </td>
+</tr>

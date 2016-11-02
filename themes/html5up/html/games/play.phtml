@@ -1,0 +1,201 @@
+﻿<?php include_once($theme."/html/header.phtml");?>
+
+<!-- Main Wrapper -->
+<div id="main-wrapper">
+    <div class="container">
+        <div class="row">
+            <div class="8u skel-cell-important">
+
+                <!-- Content -->
+                <div id="content">
+                    <article class="last">
+                        <h2 class="fa fa-2x fa-play"> Play <?php echo $game_name; ?></h2>
+                        <object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000"
+                                codebase="http://fpdownload.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=9,0,0,0"
+                                width="800"
+                                height="600"
+                                id="game"
+                                align="middle">
+                            <param name="movie" value="/swf/<?php echo $swf_id; ?>/game.swf" />
+                            <param name="allowScriptAccess" value="sameDomain" />
+                            <param name="allowFullScreen" value="true" />
+                            <param name="menu" value="false" />
+                            <param name="FlashVars" value="player=<?php echo $user; ?>"/>
+                            <param name="quality" value="high" /><param name="bgcolor" value="<?php echo $bgColor; ?>" />
+                            <embed src="/swf/<?php echo $swf_id; ?>/game.swf"
+                                   FlashVars="player=<?php echo $user; ?>"
+                                   quality="high"
+                                   menu="false"
+                                   bgcolor="<?php echo $bgColor; ?>"
+                                   width="800"
+                                   height="600"
+                                   allowFullScreen="true"
+                                   allowFullScreenInteractive="true"
+                                   name="game"
+                                   align="middle"
+                                   allowScriptAccess="sameDomain"
+                                   type="application/x-shockwave-flash"
+                                   pluginspage="http://www.macromedia.com/go/getflashplayer" />
+                        </object>
+
+                    </article>
+                </div>
+
+            </div>
+            <div class="4u">
+
+                <!-- Sidebar -->
+                <div id="sidebar">
+
+                    <section>
+                        <div class="inner" id="dynamicpositions"></div>
+                        <script type="text/javascript">
+                            $( "#dynamicpositions" ).load( '/play/<?php echo $swf_id; ?>/positions/?'+Math.random() );
+                        </script>
+                    </section>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Features Wrapper -->
+<div id="features-wrapper">
+    <div class="container">
+        <div class="row">
+            <div class="4u">
+
+                <!-- Box -->
+                <section class="box box-feature last">
+                    <div class="inner">
+                        <header>
+                            <h2 class="fa fa-2x fa-star"> Alltime heros</h2>
+                            <!--<span class="byline">Here's another intriguing subtitle</span>-->
+                        </header>
+                        <table style="width:100%;height:100%;">
+                            <?php if($allTimeStarsByGameId){ ?>
+                                <tr>
+                                    <td style="width:10%;border-bottom:1px dotted #999;">&nbsp;</td>
+                                    <td style="width:45%;border-bottom:1px dotted #999;">Player</td>
+                                    <td style="width:35%;border-bottom:1px dotted #999;">Score</td>
+                                    <td style="width:10%;border-bottom:1px dotted #999;">Level</td>
+                                </tr>
+                                <?php $i=1; foreach($allTimeStarsByGameId as $star){ ?>
+                                    <tr>
+                                        <td><?php echo $i++; ?></td>
+                                        <td>
+
+                                            <?php if($star['approved']==1){ ?>
+                                                <a href="/player/<?php echo $star['user']; ?>/"><?php echo $star['user']; ?></a>
+                                            <?php } else { ?>
+                                                <?php echo $star['user']; ?>
+                                            <?php } ?>
+
+                                        </td>
+                                        <td><?php echo $star['score']; ?></td>
+                                        <td>
+                                            <?php
+                                            if(($game_id==8 || $game_id==7 || $game_id==6) && $star['level']>=11){
+                                                echo 'Win';
+                                            } else{
+                                                echo $star['level'];
+                                            }
+                                            ?>
+                                        </td>
+                                    </tr>
+                                <?php } ?>
+                                <tr>
+                                    <td colspan="4">
+                                        <!-- &rarr; <a href="/winners/<?php echo $game_id; ?>/<?php echo $game['cleanname'] ?>/" style="padding-top:5px;text-decoration:underline;">See all</a> -->
+                                    </td>
+                                </tr>
+                            <?php } else { ?>
+                                <tr>
+                                    <td valign="top"><p>No heros yet!</p></td>
+                                </tr>
+                            <?php } ?>
+                        </table>
+                    </div>
+                </section>
+
+            </div>
+            <div class="4u">
+
+                <!-- Box -->
+                <section class="box box-feature">
+                    <div class="inner">
+                        <header>
+                            <h2 class="fa fa-2x fa-thumbs-o-up"> <?php echo date('F'); ?> Leadership</h2>
+                            <!--<span class="byline">Maybe here as well I think</span>-->
+                        </header>
+                        <table style="width:100%;height:100%;">
+                            <?php if($currentLeadershipByGameId){ ?>
+                                <tr>
+                                    <td style="width:10%;border-bottom:1px dotted #999;">&nbsp;</td>
+                                    <td style="width:45%;border-bottom:1px dotted #999;">Player</td>
+                                    <td style="width:35%;border-bottom:1px dotted #999;">Score</td>
+                                    <td style="width:10%;border-bottom:1px dotted #999;">Level</td>
+                                </tr>
+                                <?php $i=1; foreach($currentLeadershipByGameId as $leader){ ?>
+                                    <tr>
+                                        <td><?php echo $i++; ?></td>
+                                        <td>
+
+                                            <?php if($leader['approved']==1){ ?>
+                                                <a href="/player/<?php echo $leader['user']; ?>/"><?php echo $leader['user']; ?></a>
+                                            <?php } else { ?>
+                                                <?php echo $leader['user']; ?>
+                                            <?php } ?>
+
+                                        </td>
+                                        <td><?php echo $leader['score']; ?></td>
+                                        <td>
+                                            <?php
+                                            if(($game_id==8 || $game_id==7 || $game_id==6) && $leader['level']>=11){
+                                                echo 'Win';
+                                            } else{
+                                                echo $leader['level'];
+                                            }
+                                            ?>
+                                    </tr>
+                                <?php } ?>
+                                <tr>
+                                    <td colspan="4">
+                                        <!--&rarr; <a href="/scores/<?php echo $game_id; ?>/0/" style="padding-top:5px;text-decoration:underline;">See all</a>-->
+                                    </td>
+                                </tr>
+                            <?php } else { ?>
+                                <tr>
+                                    <td valign="top"><p>No Leadership yet!</p></td>
+                                </tr>
+                            <?php } ?>
+                        </table>
+
+                    </div>
+                </section>
+
+            </div>
+            <div class="4u">
+
+                <!-- Box -->
+                <section class="box box-feature">
+                    <div class="inner">
+                        <header>
+                            <h2 class="fa fa-2x fa-comments-o"> Stream</h2>
+                            <!--<span class="byline">This is also an interesting subtitle</span>-->
+                        </header>
+                        <table id="dynamiclogs" style="width:100%;height:100%;"></table>
+                        <script type="text/javascript">
+                            $( "#dynamiclogs" ).load( '/play/<?php echo $swf_id; ?>/logs/?'+Math.random() );
+                        </script>
+                    </div>
+                </section>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<?php include_once($theme."/html/footer.phtml");?>

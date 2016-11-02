@@ -1,0 +1,21 @@
+<rss version="0.92">
+	<channel>
+		<title>Riaevents.de</title>
+		<link>http://riaevents.de</link>
+		<description>RIA Events Zentrale</description>
+		<lastBuildDate><?php echo isset($events[0])? date("D, d M o h:i:s +0000",strtotime($events[0]->created)) :'Mon, 01 Sep 2008 18:51:41 +0000'; ?></lastBuildDate>
+		<docs>http://backend.userland.com/rss092</docs>
+		<language>de</language>
+		<?php
+		foreach($events as $event){
+		?>
+		<item>
+			<title><?php echo strip_tags($event->name);?> - <?php echo strip_tags($event->location_city);?> - <?php echo date("D, d M o",strtotime($event->event_start)); ?></title>
+			<description><?php echo substr(strip_tags($event->body),0,400); ?>...</description>
+			<link>http://riaevents.de/event/<?php echo $event->id;?>/<?php echo URLHelper::clean($event->name); ?>/</link>
+		</item>
+		<?php
+		}
+		?>
+	</channel>
+</rss>

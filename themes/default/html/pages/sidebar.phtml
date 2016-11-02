@@ -1,0 +1,155 @@
+<div id="sidebar">
+	<div class="side1">
+		
+		<?php if(isset($_SESSION['accountId'])){ ?>
+		<div class="gapy" id="coins" style="border:1px dotted #999;padding:5px;background-color:#eee;"> 
+			<p>
+			<?php if($amountCoins<=0){ ?>
+			&rarr; <a href="/coins/">You don't have coins</a>
+			<?php } else { ?>
+			&rarr; <a href="/coins/">You have <b><?php echo $amountCoins==1 ? '1 coin' : $amountCoins.' coins'; ?></b></a>
+			<?php } ?>
+			</p>
+			<p>
+			&rarr; Your Score: <?php echo $myacount->points; ?>
+			</p>
+			<p>
+			&rarr; Your Level: <?php echo AvatarHelper::imglevel($myacount->points); ?>
+			</p>
+		</div>
+		<?php } ?>
+		
+		<div class="gapy" id="donate"> 
+			<h2 style="border-top:none;color:#999;font-weight:normal;">Globetrotter Mobile</h2>
+			<img src="/img/globetrottermobile_s.png" /><br/>
+			<p>
+			Globetrotter is available for Android and iPhone<br/>
+			<a href="/globetrottermobile/" style="text-decoration:underline;"><b>Read more here!</b></a>
+			</p>
+		</div>
+		<?php if($latestAccounts){ ?>
+		<div class="gapy" id="highscore"> 
+			<h2 style="border-top:none;color:#999;font-weight:normal;">Welcome</h2>
+			<?php foreach($latestAccounts as $latestAccount){ ?>
+			<div>
+				<div style="float:left;padding:5px;">
+					<img style="width:30px;height:30px;" title="Gravatar.com" alt="<?php echo $latestAccount->username; ?>" src="<?php echo AvatarHelper::imgurl($latestAccount->email); ?>" />
+				</div>
+				<div style="color:#333;float:left;padding-left:5px;padding-top:10px;">
+					<?php echo $latestAccount->username; ?>
+					<?php echo AvatarHelper::imglevel($latestAccount->points); ?>
+					 - 
+					<i style="color:#ccc;"><?php echo DateFormatHelper::niceShort($latestAccount->created); ?></i>
+				</div>
+			</div>
+			<br class="clear" />
+			<?php } ?>
+		</div>
+		<?php } ?>
+
+		<?php if($leadershipAccounts){ ?>
+		<div class="gapy" id="leadership"> 
+			<h2 style="border-top:none;color:#999;font-weight:normal;">Leaderboards on Dschini.org</h2>
+			<?php foreach($leadershipAccounts as $leadershipAccount){ ?>
+			<div>
+				<div style="float:left;padding:5px;">
+					<img style="width:30px;height:30px;" alt="<?php echo $leadershipAccount->username; ?>" src="<?php echo AvatarHelper::imgurl($leadershipAccount->email); ?>" />
+				</div>
+				<div style="color:#333;float:left;padding-left:5px;padding-top:10px;">
+					<?php echo $leadershipAccount->username; ?>
+					<?php echo AvatarHelper::imglevel($leadershipAccount->points); ?>
+					 - 
+					<i style="color:#ccc;"><?php echo $leadershipAccount->points; ?> points</i>
+				</div>
+			</div>
+			<br class="clear" />
+			<?php } ?>
+		</div>
+		<?php } ?>
+
+		<?php if($logs){ ?>
+		<div class="gapy" id="logs">
+			<h2 style="border-top:none;color:#999;font-weight:normal;">Latest Logs</h2>
+		 	<?php
+			foreach($logs as $log){
+				$value = unserialize($log->value);
+				switch($log->type){
+					case LogsProxy::$TYPE_LOGIN:
+			?>
+			<div style="float:left;padding:5px;width:30px;">
+				<img alt="<?php echo $value[0]; ?>" src="<?php echo AvatarHelper::imgurl($value[1]); ?>" />
+			</div>
+			<div style="float:left;padding-left:5px;padding-top:2px;">
+				<?php echo $value[0]; ?> has logged in<br/>
+				<i style="color:#ccc;"><?php echo DateFormatHelper::niceShort($log->created); ?></i>
+			</div>
+			<?php
+				break;
+				case LogsProxy::$TYPE_ACCOUNTAPPROVED:
+			?>
+			<div style="float:left;padding:5px;width:30px;">
+				<img alt="<?php echo $value[0]; ?>" src="<?php echo AvatarHelper::imgurl($value[1]); ?>" />
+			</div>
+			<div style="float:left;padding-left:5px;padding-top:2px;">
+				<?php echo $value[0]; ?> has approved his name<br/>
+				<i style="color:#ccc;"><?php echo DateFormatHelper::niceShort($log->created); ?></i>
+			</div>
+			<?php
+				break;
+				case LogsProxy::$TYPE_GAMESTART
+			?>
+			<div style="float:left;padding-left:5px;padding-top:2px;">
+			<?php echo $value[0]; ?> plays 
+			<?php 
+			switch($value[1]){
+				case 1: echo '<a href="/game/1/" style="text-decoration:underline">Find the Bug</a>'; break;
+				case 2: echo '<a href="/game/2/" style="text-decoration:underline">Find the Bang</a>'; break;
+				case 3: echo '<a href="/game/3/" style="text-decoration:underline">Find the Art</a>'; break;
+				case 4: echo '<a href="/game/4/" style="text-decoration:underline">Memory Mania</a>'; break;
+				case 5: echo '<a href="/game/5/" style="text-decoration:underline">Find the Sun</a>'; break;
+				case 6: echo '<a href="/game/6/" style="text-decoration:underline">Globetrotter XL</a>'; break;
+				case 7: echo '<a href="/game/7/" style="text-decoration:underline">Globetrotter</a>'; break;
+				case 8: echo '<a href="/game/8/" style="text-decoration:underline">Hippopotamus</a>'; break;
+			}
+			?>
+				<br/>
+				<i style="color:#ccc;"><?php echo DateFormatHelper::niceShort($log->created); ?></i>
+			</div>
+			<?php
+				break;
+				case LogsProxy::$TYPE_SAVESCORE:
+			?>
+			<div style="float:left;padding-left:5px;padding-top:2px;">
+			<?php echo $value[0]; ?>
+			<?php 
+			if(($value[1]==7||$value[1]==6) && $value[2]>=11){
+				echo ' has won '; 
+			} else{
+				echo ' reached level ' . $value[2] . ' in ';
+			}	
+			switch($value[1]){
+				case 1: echo '<a href="/game/1/" style="text-decoration:underline">Find the Bug</a>'; break;
+				case 2: echo '<a href="/game/2/" style="text-decoration:underline">Find the Bang</a>'; break;
+				case 3: echo '<a href="/game/3/" style="text-decoration:underline">Find the Art</a>'; break;
+				case 4: echo '<a href="/game/4/" style="text-decoration:underline">Memory Mania</a>'; break;
+				case 5: echo '<a href="/game/5/" style="text-decoration:underline">Find the Sun</a>'; break;
+				case 6: echo '<a href="/game/6/" style="text-decoration:underline">Globetrotter XL</a>'; break;
+				case 7: echo '<a href="/game/7/" style="text-decoration:underline">Globetrotter</a>'; break;
+				case 8: echo '<a href="/game/8/" style="text-decoration:underline">Hippopotamus</a>'; break;
+			}
+			?>
+				<br/>
+				<i style="color:#ccc;"><?php echo DateFormatHelper::niceShort($log->created); ?></i>
+			</div>
+			<?php 
+			break;
+			}
+			?>
+			<br class="clear" />
+		<?php } ?>
+		</div>
+		<?php } ?>
+		
+	</div>
+</div>
+ 

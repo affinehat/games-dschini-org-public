@@ -1,0 +1,59 @@
+<?php include_once($theme."/html/header.phtml");?>
+
+<div id="sub-page">
+
+<div id="content-wrap">
+ <div id="content">
+  <div class="gap">
+
+   <!-- start -->
+<div>
+<object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" 
+	codebase="http://fpdownload.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=9,0,0,0" 
+	width="800" 
+	height="200" 
+	id="game" 
+	align="middle">
+<param name="allowScriptAccess" value="sameDomain" />
+<param name="movie" value="/swf/<?php echo $swf_id; ?>/game.swf" />
+<param name="menu" value="false" />
+<param name=FlashVars value="player=<?php echo $user; ?>"/>
+<param name="quality" value="high" /><param name="bgcolor" value="<?php echo $bgColor; ?>" />
+	<embed 	src="/swf/<?php echo $swf_id; ?>/game.swf"
+			FlashVars="player=<?php echo $user; ?>" 
+			quality="high" 
+			menu="false" 
+			bgcolor="<?php echo $bgColor; ?>" 
+			width="800" 
+			height="200" 
+			name="game" 
+			align="middle" 
+			allowScriptAccess="sameDomain" 
+			type="application/x-shockwave-flash" 
+			pluginspage="http://www.macromedia.com/go/getflashplayer" />
+</object> 
+</div> 
+<br/>
+<h2>About</h2>
+<p>Inhaltlich Verantwortlicher gemäß §10 Absatz 3 MDStV:</p>
+<p>John Weber<br>
+Brehmstr. 24<br>
+81543 München<br/>
+you@mail.com<br>
+<a href="http://John.dschini.org">http://John.dschini.org</a><br/>
+<p>Trotz sorgfältiger inhaltlicher Kontrolle übernehmen wir keine Haftung für die Inhalte externer Links.</p>
+<p>Für den Inhalt der verlinkten Seiten sind ausschliesslich deren Betreiber verantwortlich.</p>
+
+
+	<!-- end -->
+  </div>
+ </div>
+</div>
+
+<?php include_once($theme."/html/pages/sidebar.phtml");?>
+
+<br class="clear" />
+</div>
+</div>
+
+<?php include_once($theme."/html/footer.phtml");?>

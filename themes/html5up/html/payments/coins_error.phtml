@@ -1,0 +1,73 @@
+<?php include_once($theme."/html/header.phtml");?>
+
+<!-- Main Wrapper -->
+<div id="main-wrapper">
+    <div class="container">
+        <div class="row">
+
+
+            <div class="12u skel-cell-important">
+
+                <!-- Content -->
+                <div id="content">
+                    <section class="last">
+                        <h2>Error</h2>
+                        The PayPal API has returned an error.
+
+                        <div class="superflow">
+
+                            <div class="box" style="float:left;">
+                                <div style="margin-right:10px;">
+                                    <div style="width:300px;padding:10px;border:1px dotted #666666;background-color:#eeeeee;">
+                                        <?php  //it will print if any URL errors
+                                        if(isset($_SESSION['curl_error_no'])) {
+                                            $errorCode= $_SESSION['curl_error_no'] ;
+                                            $errorMessage=$_SESSION['curl_error_msg'] ;
+                                            session_unset();
+                                            ?>
+                                            <p>
+                                                Error Number: <?php echo $errorCode; ?>
+                                                <br/>
+                                                Error Message: <?php echo $errorMessage; ?>
+                                            </p>
+                                        <?php } else {
+                                            /* If there is no URL Errors, Construct the HTML page with
+                                               Response Error parameters.
+                                               */
+                                            ?>
+                                            <p>Ack: <?php echo $resArray['ACK']; ?></p>
+                                            <p>Correlation ID: <?php echo $resArray['CORRELATIONID']; ?></p>
+                                            <p>Version: <?php echo $resArray['VERSION']; ?></p>
+                                            <?php
+                                            $count=0;
+                                            while (isset($resArray["L_SHORTMESSAGE".$count])) {
+                                                $errorCode    = $resArray["L_ERRORCODE".$count];
+                                                $shortMessage = $resArray["L_SHORTMESSAGE".$count];
+                                                $longMessage  = $resArray["L_LONGMESSAGE".$count];
+                                                $count=$count+1;
+                                                ?>
+                                                <p>Error Number: <?php echo $errorCode; ?></p>
+                                                <p>Short Message: <?php echo $shortMessage; ?></p>
+                                                <p>Long Message: <?php echo $longMessage; ?></p>
+
+                                            <?php }
+                                        }
+                                        ?>
+
+                                        <p>
+                                            &rarr; <a href="/">Continue here</a>!
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<?php include_once($theme."/html/footer.phtml");?>

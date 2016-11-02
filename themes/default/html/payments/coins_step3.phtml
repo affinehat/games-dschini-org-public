@@ -1,0 +1,45 @@
+<?php include_once($theme."/html/header.phtml");?>
+<div id="sub-page">
+
+<div id="content-wrap">
+ <div id="content">
+
+  <div class="gap">
+
+   <!-- start -->
+	<h2>Thank you</h2>
+	We have received your order. The coins will be available when the payment has been accepted.
+	
+	<div class="superflow" style="width:100%;">
+		<div class="box" style="float:left;">
+			<div style="margin-right:10px;">
+				<div style="width:250px;padding:10px;border:1px dotted #666666;background-color:#eeeeee;">
+					<h3 style="padding:2px;">Confirmation</h3>
+					<p>
+					Payment method: PayPal
+					<br/>
+					Transaction ID: <?php echo $transactionId; ?>
+					</p>
+					<p>
+					
+					</p>
+					<p>
+					&rarr; <a href="/">Meanwhile have fun playing</a>!
+					</p>
+				</div>
+			</div>
+		</div>
+	</div>
+
+   <!-- end -->
+  </div>
+ </div>
+</div>
+
+<?php include_once($theme."/html/payments/sidebar.phtml");?>
+
+<br class="clear" />
+</div>
+</div>
+
+<?php include_once($theme."/html/footer.phtml");?>

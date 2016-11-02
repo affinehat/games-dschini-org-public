@@ -1,0 +1,61 @@
+<?php include_once($theme."/html/header.phtml");?>
+
+<div id="sub-page">
+	<div id="content-wrap"> 
+		<div id="content"> 
+			<div class="gap">
+
+				<?php $featuredId = 10; ?>
+				<div class="post lastlast"> 
+					<a href="/game/<?php echo $featuredId; ?>/<?php echo $games[$featuredId]['cleanname'] ?>/" rel="bookmark" title="Play: <?php echo $games[$featuredId]['title'] ?>">
+					<div class="tumbr" style="z-index:2;margin-left: 10px;float:right; width: 295px; height: 190px; background: url(<?php echo $games[$featuredId]['img'] ?>) 0 0 no-repeat; content: ">
+					</div></a>
+					<div class="superlast clearfix"> 
+						<h2>
+							<a href="/game/<?php echo $featuredId; ?>/<?php echo $games[$featuredId]['cleanname'] ?>/" rel="bookmark" title="<?php echo $games[$featuredId]['title'] ?>"><?php echo $games[$featuredId]['title'] ?></a>
+						</h2>
+						<div class="entry">
+							<p>
+							<?php echo $games[$featuredId]['body'] ?>
+							</p>
+							<p>
+							&rarr; <a href="/game/<?php echo $featuredId; ?>/<?php echo $games[$featuredId]['cleanname'] ?>/">Play</a>
+							</p>
+						</div>
+					</div>
+					<div style="clear:both;"></div>
+				</div>
+				<div class="superflow" style="width:100%;">
+					<?php $others = array(8,6,7,5,4,3,2,1); ?>
+					<?php for($i=0; $i<count($others); $i++ ){ ?>
+					<div class="box" style="padding:10px;float:left;width:22%;">
+						<div style="padding:5px;">
+							<div style="padding-bottom:5px;">
+								<b><?php echo $games[$others[$i]]['title'] ?></b>
+							</div>
+							<a href="/game/<?php echo $others[$i]; ?>/<?php echo $games[$others[$i]]['cleanname'] ?>/" rel="bookmark" title="Play: <?php echo $games[$others[$i]]['title'] ?>">
+								<div class="tumbr" style="border:1px solid black;width:100%;height:160px;background: url(<?php echo $games[$others[$i]]['img'] ?>) 0 0 no-repeat;">
+								</div>
+							</a>
+							<div style="padding-top:5px;">
+								&rarr; Coins: <?php echo $games[$others[$i]]['coins']==0 ? 'Free!' : $games[$others[$i]]['coins']; ?>
+								<br/>
+								&rarr; Gameplays: <?php echo isset($amountOfTotalGameplays[$others[$i]]) ? ($amountOfTotalGameplays[$others[$i]]+500000) : 0; ?>
+								<br/>
+								&rarr; <a href="/game/<?php echo $others[$i]; ?>/<?php echo $games[$others[$i]]['cleanname'] ?>/">Go to game!</a>
+							</div>
+						</div>
+					</div>
+					<?php } ?>
+				</div>
+			</div> <!-- /gap --> 
+		</div> <!-- /content --> 
+	</div> <!-- /content-wrap -->
+
+
+<?php include_once($theme."/html/pages/sidebar.phtml");?>
+
+<br class="clear" />
+</div>
+</div>
+<?php include_once($theme."/html/footer.phtml");?>

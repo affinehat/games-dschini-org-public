@@ -1,0 +1,81 @@
+<?php include_once($theme."/html/header.phtml");?>
+
+<!-- Main Wrapper -->
+<div id="main-wrapper">
+    <div class="container">
+        <div class="row">
+
+            <div class="4u">
+
+                <!-- Sidebar -->
+                <div id="sidebar">
+
+                    <section>
+                        <h3>&nbsp;</h3>
+                        <footer>
+                            <a href="/player/<?php echo $user->username; ?>/" class="button fa fa-user"><?php echo $user->username; ?></a>
+                        </footer>
+                    </section>
+
+                </div>
+
+            </div>
+
+            <div class="8u">
+
+                <!-- Content -->
+                <div id="content">
+                    <section class="last">
+                        <h2 class="fa fa-2x">Compose</h2>
+
+                        <form id="form" method="post" style="width: 90%">
+
+                            <div class="header">
+                                <?php
+                                $style=' style="" ';
+                                $subject = $reply->subject ? 'Re: '.$reply->subject : '';
+                                $body = $reply->body ? "\n\n...\n\n" .$reply->body : '';
+                                ?>
+                                <?php if(count($error)>0){ ?>
+                                    <h3>Ooops!</h3>
+                                    <?php
+                                    if(isset($error)){
+                                        $style=' style="background:#ff0000;" ';
+                                        ?>
+                                        <h2 style="color: #ff0000;"><?php echo $error; ?></h2>
+                                    <?php } ?>
+                                <?php } ?>
+
+                                <h3>Compose a message to <?php echo $user->username; ?></h3>
+
+                            </div>
+
+                            <div class="sep"></div>
+
+                            <div class="inputs">
+
+                                <div>
+                                    <input type="text" name="subject" <?php echo $style; ?> placeholder="Subject" value="<?php echo $subject; ?>" autofocus />
+                                </div>
+
+                                <div>
+                                    <textarea name="body" placeholder="Body" rows="8" style="width:100%;"><?php echo $body; ?></textarea>
+                                </div>
+
+                                <div>
+                                    <input type="submit" class="button" value="Send">
+                                </div>
+
+                            </div>
+
+                        </form>
+
+                    </section>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<?php include_once($theme."/html/footer.phtml");?>

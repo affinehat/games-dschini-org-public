@@ -1,0 +1,66 @@
+<?php include_once($theme."/html/header.phtml");?>
+
+<div id="sub-page">
+
+<div id="content-wrap">
+ <div id="content">
+  <div class="gap">
+
+   <!-- start -->
+<div class="formin"> 
+<form action="" method="post" id="form"> 
+
+  <?php if(count($error)>0){ ?>
+  <p>
+    <h1 style="color:red;">Ooops!</h1>
+    <?php if(isset($error["user"])){ ?>
+	    <?php 
+	    switch($error["user"]){
+	    	case 'user_invalid': 
+	    ?>
+	    <h3 style="color:red;">Username is not valid! Must be chars or numbers and length between 4 and 15</h3>
+	    <?php 
+	    	break; 
+	    	case 'username_already_exists': 
+	    ?>
+	    <h3 style="color:red;">Username is already registered!</h3>
+	    <?php 
+	    	break;
+	    }
+	    ?>
+	<?php } else { ?>
+    <h3 style="color:red;">Something is wrong!</h3>
+	<?php } ?>
+  </p>
+  <?php } ?>
+  <p>
+    <h2 style="padding-top:10px;border-bottom:1px dotted #ccc;">Your name please!</h2>
+  </p>
+  <p>
+  	We require your name to be used for the highscore!
+  </p>
+  <p>
+    <label for="user"><small>Name:</small> <b style="position:relative;z-index:2;top:20px;color:red;font-size:48px;">*</b></label><br/>
+  </p>
+  <p>
+    <input type="text" name="user" id="user" value="<?php echo $user; ?>" maxlength="100" size="40" style="<?php echo isset($error['user'])?'border:1px solid red':''; ?>" /> 
+  </p>
+  <!-- Submit -->
+  <p style="padding-top:10px;"> 
+   <input name="next" type="submit" id="submit" value="OK, play now &rarr;" /> 
+  </p> 
+  </form> 
+</div> 
+   <!-- end -->
+
+  </div>
+ </div>
+</div>
+
+<?php include_once($theme."/html/accounts/sidebar.phtml");?>
+
+<br class="clear" />
+</div>
+</div>
+
+<?php include_once($theme."/html/footer.phtml");?>

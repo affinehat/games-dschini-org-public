@@ -1,0 +1,46 @@
+<?php include_once($theme."/html/header.phtml");?>
+
+<!-- Main Wrapper -->
+<div id="main-wrapper">
+    <div class="container">
+        <div class="row">
+            <div class="8u skel-cell-important">
+
+                <!-- Content -->
+                <div id="content">
+                    <article class="last">
+                        <h2 class="fa fa-2x fa-user"> <?php echo $user->username; ?></h2>
+
+                        <ul>
+                            <li>Created: <?php echo $user->created; ?></li>
+                            <li>Points: <?php echo $user->points; ?></li>
+                        </ul>
+
+                    </article>
+                </div>
+
+            </div>
+            <div class="4u">
+
+                <!-- Sidebar -->
+                <div id="sidebar">
+
+                    <section>
+                        <h2>&nbsp;</h2>
+                        <footer>
+                            <?php if($isUsersProfile){ ?>
+                                <a href="/player/<?php echo $user->username; ?>/edit/" class="button fa fa-user">Edit Profile</a>
+                            <?php } else { ?>
+                                <a href="/compose/<?php echo $user->username; ?>/?next=/player/<?php echo $user->username; ?>/" class="button fa fa-user">Send a Private Message</a>
+                            <?php } ?>
+                        </footer>
+                    </section>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<?php include_once($theme."/html/footer.phtml");?>

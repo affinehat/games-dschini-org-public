@@ -1,0 +1,46 @@
+<?php include_once($theme."/html/header.phtml");?>
+
+<!-- Main Wrapper -->
+<div id="main-wrapper">
+    <div class="container">
+        <div class="row">
+            <div class="4u">
+
+                <!-- Sidebar -->
+                <div id="sidebar">
+
+                    <section>
+                        <h3>&nbsp;</h3>
+                        <div class="grid">
+                            <div class="row no-collapse half">
+                                <div class="9u"><a class="button fa fa-inbox" href="/inbox/">Inbox</a></div>
+                            </div>
+                            <div class="row no-collapse half">
+                                <div class="9u"><a class="button fa fa-archive" href="/outbox/">Outbox</a></div>
+                            </div>
+                            <div class="row no-collapse half">
+                                <div class="9u"><a class="button alt fa fa-trash-o" href="/trashbox/">Trashbox</a></div>
+                            </div>
+                        </div>
+                    </section>
+
+                </div>
+
+            </div>
+            <div class="8u">
+
+                <!-- Content -->
+                <div id="content">
+                    <section class="last">
+                        <h2 class="fa fa-2x fa-archive"> Outbox Messages</h2>
+                        <?php include_once($theme."/html/users/mails.phtml");?>
+                    </section>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<?php include_once($theme."/html/footer.phtml");?>
+

@@ -1,0 +1,41 @@
+<?php $month = date('F'); ?>
+<h2 style="border-top:none;color:#999;font-weight:normal;"><?php echo $game_name; ?> - <?php echo $month; ?> Highscore</h2>
+<table style="width:100%;">
+	<tr>
+		<th>Rank</th>
+		<th>Level</th>
+		<th>Score</th>
+		<th>User</th>
+	</tr>
+	<?php
+	$rank = $positions['rank'] - $positions['countRowsHighscorePrev'];
+	foreach($positions['positions'] as $position){ 
+	?>
+	<tr style="<?php echo $position->user==$_SESSION['user'] ? 'background-color:#009900;color:white;' : ''; ?>">
+		<td style="padding:5px;"><?php echo $rank; ?></td>
+		<td style="padding:5px;">
+		<?php 
+		if(($game_id==8 || $game_id==7 || $game_id==6) && $position->level>=11){
+			echo 'Win!'; 
+		} else{
+			echo $position->level; 
+		}
+		?>
+		</td>
+		<td style="padding:5px;"><?php echo $position->score; ?></td>
+		<td style="padding:5px;"><?php echo $position->user; ?></td>
+	</tr>
+	<?php
+	$rank++;
+	}
+	?>
+
+<tr>
+	<td colspan="4">
+		<br />
+		&rarr; <a href="/scores/<?php echo $swf_id; ?>/0/">See this month leadership</a>
+		<br />
+		&rarr; <a href="/winners/<?php echo $swf_id; ?>/">See all past winners</a>
+	</td>
+</tr>
+</table>

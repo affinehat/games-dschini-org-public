@@ -1,0 +1,102 @@
+<?php include_once($theme."/html/header.phtml");?>
+
+<div id="sub-page">
+
+<div id="content-wrap">
+ <div id="content">
+  <div class="gap">
+
+   <!-- start -->
+	<style type="text/css">
+	table.padded-table td { padding:8px; }
+	</style>
+
+	<?php if(!$scores){ ?>
+	Sorry no scores yet!
+	<?php } ?>
+	
+	<?php if($scores){ ?>
+	<table width="100%" class="padded-table">
+	<tr>
+		<td>Position</td>
+		<td>Avatar</td>
+		<td>Player</td>
+		<td>Level</td>
+		<td>Score</td>
+		<td></td>
+	</tr>
+	<?php
+	$limit_from += 1;
+	$amountDisplayCount = 0;
+	foreach($scores as $score){
+		if($amountDisplayCount<$amountDisplay){
+			$amountDisplayCount++ ;
+	?>
+	<tr>
+		<td style="border-bottom:1px solid #dddddd;"><?php echo $limit_from++; ?></td>
+		<td style="border-bottom:1px solid #dddddd;"><?php echo ($score->email!=''&&$score->approved==1) ? '<img src="'.AvatarHelper::imgurl($score->email).'" />' : ''; ?></td>
+		<td style="border-bottom:1px solid #dddddd;">
+		<?php if($score->email!=''&&$score->approved==1){ ?>
+		<!--
+		<a href="/player/<?php echo $score->user; ?>/"><?php echo $score->user; ?></a>
+		-->
+		<?php echo $score->user; ?>
+		<?php echo AvatarHelper::imglevel($score->points); ?>
+		<?php } else { ?>
+		<?php echo $score->user; ?>
+		<?php } ?>
+		</td>
+		<td style="border-bottom:1px solid #dddddd;">
+		<?php 
+		if(($game_id==8 || $game_id==7 || $game_id==6) && $score->level>=11){
+			echo 'Win'; 
+		} else{
+			echo $score->level; 
+		}
+		?>
+		</td>
+		<td style="border-bottom:1px solid #dddddd;"><b><?php echo $score->score; ?></b></td>
+		<td><span style="color:#bbbbbb;"><?php echo DateFormatHelper::niceShort($score->created); ?></span></td>
+	</tr>
+	<?php
+	}}
+	?>
+	</table>
+	<table width="100%" class="padded-table">
+	<tr>
+		<td style="width:50px;text-align:left" valign="top">
+		<?php if($page_no>0){ ?>
+		<a href="/scores/<?php echo $game_id; ?>/<?php echo ($page_no-1); ?>/" style="text-decoration:underline;">Before</a></td>
+		<?php } ?>
+		</td>
+		<td style="text-align:center;">
+		<?php
+		$amountOfPages = $amountOfScores/$amountDisplay;
+		for($i=0; $i<=$amountOfPages; $i++){
+		?>
+		<a title="<?php echo ($i*$amountDisplay+1)."-".($i*$amountDisplay+$amountDisplay); ?>" href="/scores/<?php echo $game_id; ?>/<?php echo ($i); ?>/" style="text-decoration:underline;">.</a>
+		<?php
+		echo ($i%50==0) ? '<br/>' : '';
+		}
+		?>
+		</td>
+		<td style="width:50px;text-align:right" valign="top">
+		<?php if(count($scores)>$amountDisplay){ ?>
+		<a href="/scores/<?php echo $game_id; ?>/<?php echo ($page_no+1); ?>/" style="text-decoration:underline;">Next</a>
+		<?php } ?>
+		</td>
+	</tr>
+	</table>
+	<?php } ?>
+   <!-- end -->
+
+  </div>
+ </div>
+</div>
+
+<?php include_once($theme."/html/games/sidebar.phtml");?>
+
+<br class="clear" />
+</div>
+
+<?php include_once($theme."/html/footer.phtml");?>

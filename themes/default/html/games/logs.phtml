@@ -1,0 +1,53 @@
+<?php $month = date('F'); ?>
+<h2 style="border-top:none;color:#999;font-weight:normal;">Latest Logs</h2>
+<?php
+foreach($logs as $log){ 
+	$value = unserialize($log->value);
+	switch($log->type){
+		case LogsProxy::$TYPE_EARNEDPOINTS:
+?>
+<div style="float:left;padding-left:5px;padding-top:2px;">
+	<b>
+	<?php echo $value[0]; ?>
+	 earned 
+	<?php echo $value[2]; ?>
+	 point<?php echo $value[2]>1?'s':''; ?> 
+	 </b>
+	 <img src="/img/star.gif" title="<?php echo $value[2]; ?>" />
+	<br/>
+	<i style="color:#ccc;"><?php echo DateFormatHelper::niceShort($log->created); ?></i>
+</div>
+<br class="clear" />
+<?php
+break;
+		case LogsProxy::$TYPE_SAVESCORE:
+?>
+<div style="float:left;padding-left:5px;padding-top:2px;">
+
+	<?php echo $value[0]; ?>
+	<?php 
+	if(($value[1]==8||$value[1]==7||$value[1]==6 )&& $value[2]>=11){
+		echo ' has won '; 
+	} else{
+		echo ' reached level ' . $value[2] . ' in ';
+	}	
+	switch($value[1]){
+		case 1: echo '<a href="/game/1/" style="text-decoration:underline">Find the Bug</a>'; break;
+		case 2: echo '<a href="/game/2/" style="text-decoration:underline">Find the Bang</a>'; break;
+		case 3: echo '<a href="/game/3/" style="text-decoration:underline">Find the Art</a>'; break;
+		case 4: echo '<a href="/game/4/" style="text-decoration:underline">Memory Mania</a>'; break;
+		case 5: echo '<a href="/game/5/" style="text-decoration:underline">Find the Sun</a>'; break;
+		case 6: echo '<a href="/game/6/" style="text-decoration:underline">Globetrotter XL</a>'; break;
+		case 7: echo '<a href="/game/7/" style="text-decoration:underline">Globetrotter</a>'; break;
+        case 8: echo '<a href="/game/8/" style="text-decoration:underline">Hippopotamus</a>'; break;
+        case 10: echo '<a href="/game/10/" style="text-decoration:underline">Binary</a>'; break;
+	}
+	?>
+	<br/>
+	<i style="color:#ccc;"><?php echo DateFormatHelper::niceShort($log->created); ?></i>
+</div>
+<br class="clear" />
+<?php
+break;
+	}
+}

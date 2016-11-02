@@ -1,0 +1,64 @@
+<div id="sidebar">
+
+<div class="side1">
+                <?php if(isset($_SESSION['accountId'])){ ?>
+                <div class="gapy" id="coins" style="border:1px dotted #999;padding:5px;background-color:#eee;">
+                        <p>
+                        <?php if($amountCoins<=0){ ?>
+                        &rarr; <a href="/coins/">You don't have coins</a>
+                        <?php } else { ?>
+                        &rarr; <a href="/coins/">You have <b><?php echo $amountCoins==1 ? '1 coin' : $amountCoins.' coins'; ?></b></a>
+                        <?php } ?>
+                        </p>
+                        <p>
+                        &rarr; Your Score: <?php echo $myacount->points; ?>
+                        </p>
+                        <p>
+                        &rarr; Your Level: <?php echo AvatarHelper::imglevel($myacount->points); ?>
+                        </p>
+                </div>
+                <?php } ?>
+    <div class="gapy" id="dynamicpositions" style=""></div>
+
+	<script type="text/javascript">
+	Event.observe(window, 'load', function() {
+	new Ajax.PeriodicalUpdater('dynamicpositions', '/play/<?php echo $swf_id; ?>/positions/?'+Math.random(),
+	{
+		method: 'post', 
+		insertion: Insertion.Bottom,
+		asynchronous: true, 
+		frequency: 250, 
+		decay: 2,
+		onCreate: function(){
+			var element = document.getElementById("dynamicpositions"); 
+			while (element.firstChild) {
+				element.removeChild(element.firstChild); 
+			}
+		}
+	});
+	});	
+	</script>
+
+	<div class="gapy" id="dynamiclogs"></div>
+	<script type="text/javascript">
+	Event.observe(window, 'load', function() {
+	new Ajax.PeriodicalUpdater('dynamiclogs', '/play/<?php echo $swf_id; ?>/logs/?'+Math.random(),
+	{
+		method: 'post', 
+		insertion: Insertion.Bottom,
+		asynchronous: true, 
+		frequency: 250, 
+		decay: 2,
+		onCreate: function(){
+			var element = document.getElementById("dynamiclogs"); 
+			while (element.firstChild) {
+				element.removeChild(element.firstChild); 
+			}
+		}
+	});
+	});	
+	</script>
+
+</div>
+</div>
+ 

@@ -1,0 +1,87 @@
+<?php include_once($theme."/html/header.phtml");?>
+
+<!-- Main Wrapper -->
+<div id="main-wrapper">
+    <div class="container">
+        <div class="row">
+            <div class="4u">
+
+                <!-- Sidebar -->
+                <div id="sidebar">
+                    <section class="widget-links">
+                        <h3>Related Options</h3>
+                        <div class="grid">
+                            <div class="row no-collapse half">
+                                <div class="9u"><a class="button" href="/lostpassword/">Reset password</a></div>
+                            </div>
+                            <div class="row no-collapse half">
+                                <div class="9u"><a class="button" href="/register/">Create Account</a></div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+
+            </div>
+            <div class="8u">
+
+                <!-- Content -->
+                <div id="content">
+                    <section class="last">
+
+                        <h2>Sign in</h2>
+
+                        <form id="form" method="post">
+
+                            <div class="header">
+
+                                <?php
+                                $style=' style="" ';
+                                ?>
+                                <?php if(count($error)>0){ ?>
+                                    <h3>Ooops!</h3>
+                                    <?php
+                                    if(isset($error)){
+                                        $style=' style="background:#ff0000;" ';
+                                        ?>
+                                        <h2 style="color: #ff0000;"><?php echo $error; ?></h2>
+                                    <?php } ?>
+                                <?php } ?>
+
+
+                                <h3>Login</h3>
+                                <p>
+                                    Please enter your username and your password!
+                                </p>
+
+                            </div>
+
+                            <div class="sep"></div>
+
+                            <div class="inputs">
+
+                                <div>
+                                    <input type="text" name="user" id="username" placeholder="Username" <?php echo $style; ?> value="<?php echo $user; ?>" />
+                                </div>
+
+                                <div>
+                                    <input type="password" name="password" id="password" placeholder="Password" />
+                                    <br/>
+                                </div>
+
+                                <div>
+                                    <input type="submit" class="button" value="Sign In">
+                                </div>
+
+                            </div>
+
+                        </form>
+
+                    </section>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<?php include_once($theme."/html/footer.phtml");?>

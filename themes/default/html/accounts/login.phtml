@@ -1,0 +1,70 @@
+<?php include_once($theme."/html/header.phtml");?>
+
+<div id="sub-page">
+
+<div id="content-wrap">
+ <div id="content">
+  <div class="gap">
+
+   <!-- start -->
+<div class="formin"> 
+
+  <?php if(count($error)>0){ ?>
+  <p>
+    <h1 style="color:red;">Ooops!</h1>
+    <?php if(isset($error["account"])){ ?>
+	    <?php 
+	    switch($error["account"]){
+	    	case 'could_not_login': 
+	    ?>
+	    <h3 style="color:red;">Could not login!</h3>
+	    <?php 
+	    	break; 
+	    }
+	    ?>
+	<?php } else { ?>
+    <h3 style="color:red;">Something is wrong!</h3>
+	<?php } ?>
+  </p>
+  <?php } ?>
+  <p>
+    <h2 style="padding-top:10px;border-bottom:1px dotted #ccc;">Login:</h2>
+  </p>
+  <div style="float:left;width:400px;">
+<form action="" method="post" id="form"> 
+		  <p>
+		  	Please enter your username and your password!
+		  </p>
+		  <p>
+		    <label for="user"><small>Name:</small> <b style="position:relative;z-index:2;top:20px;color:red;font-size:48px;">*</b></label><br/>
+		  </p>
+		  <p>
+		    <input type="text" name="user" id="user" value="<?php echo $user; ?>" maxlength="100" size="40" style="<?php echo isset($error['user'])?'border:1px solid red':''; ?>" /> 
+		  </p>
+		  <p>
+		    <label for="password"><small>Password:</small> <b style="position:relative;z-index:2;top:20px;color:red;font-size:48px;">*</b></label><br/>
+		  </p>
+		  <p>
+		    <input type="password" name="password" id="password" value="" maxlength="100" size="40" style="<?php echo isset($error['password'])?'border:1px solid red':''; ?>" /> 
+		  </p>
+		  <!-- Submit -->
+		  <p style="padding-top:10px;"> 
+		   <input name="next" type="submit" id="submit" value="OK, let's go  &rarr;" /> 
+		  </p> 
+  </form> 
+  </div>
+</div> 
+
+   <!-- end -->
+
+  </div>
+ </div>
+</div>
+
+<?php include_once($theme."/html/accounts/sidebar.phtml");?>
+
+<br class="clear" />
+</div>
+</div>
+
+<?php include_once($theme."/html/footer.phtml");?>

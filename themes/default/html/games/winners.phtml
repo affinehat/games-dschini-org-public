@@ -1,0 +1,76 @@
+<?php include_once($theme."/html/header.phtml");?>
+<div id="sub-page">
+
+<div id="content-wrap">
+ <div id="content">
+
+  <div class="gap">
+
+	<!-- start -->
+	<style type="text/css">
+	table.padded-table td { padding:8px; }
+	</style>
+   
+	<?php if(!$monthlyTopscoresByGameId){ ?>
+	Sorry no winners yet!
+	<?php } ?>
+    <?php 
+    foreach($monthlyTopscoresByGameId as $key_year => $year){ 
+    ?>
+	<?php foreach($year as $key_month => $month){ ?>
+	<div style="float:left;width:380px;margin-bottom:20px;margin-right:20px;text-align:center;">
+	<h3 style="color:#999;font-weight:normal;">
+	<?php echo DateFormatHelper::month($key_month); ?> <?php echo $key_year; ?>
+	</h3>
+	<table class="padded-table" border="0" style="width:100%;height:100%;">
+	<tr>
+		<td width="20%" style="text-align:center;">Position</td>
+		<td width="20%">Avatar</td>
+		<td width="20%">Player</td>
+		<td width="20%">Level</td>
+		<td width="20%">Score</td>
+	</tr>
+	<?php 
+	$rank = 1;
+	foreach($month as $postion=>$player){ 
+	?>
+	<tr>
+		<td style="border-top:1px dotted #999;text-align:center;"><?php echo $rank++; ?></td>
+		<td style="border-top:1px dotted #999;"><?php echo ($player['email']!=''&&$player['approved']==1) ? '<img style="height:30px;" src="'.AvatarHelper::imgurl($player['email']).'" />' : '<div style="height:30px;"></div>'; ?></td>
+		<td style="border-top:1px dotted #999;"><?php echo $player['user']; ?></td>
+		<td style="border-top:1px dotted #999;">
+		<?php 
+		if(($game_id==8 || $game_id==7 || $game_id==6) && $player['level']>=11){
+			echo 'Win'; 
+		} else{
+			echo $player['level']; 
+		}
+		?>
+		</td>
+		<td style="border-top:1px dotted #999;"><b><?php echo $player['score']; ?></b></td>
+	</tr>
+	<?php } ?>
+	</table>
+	
+	</div>
+	<div style="clear:right;"></div>
+    <?php 
+	$monthCount++;
+	}
+	?>
+    <?php 
+    }
+    ?>
+
+   <!-- end -->
+  </div>
+ </div>
+</div>
+
+<?php include_once($theme."/html/games/sidebar.phtml");?>
+
+<br class="clear" />
+</div>
+</div>
+
+<?php include_once($theme."/html/footer.phtml");?>

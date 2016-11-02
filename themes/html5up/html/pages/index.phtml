@@ -1,0 +1,59 @@
+<?php include_once($theme."/html/header.phtml");?>
+
+
+<div id="main-wrapper">
+    <div class="container">
+        <div class="row">
+            <div class="4u">
+                <div id="sidebar">
+                    <section class="widget thumbnails">
+                        <div class="grid">
+                <?php
+                $featuredGames = array(10,8,6,3,5,2);
+                for($i=0; $i<3; $i++){
+                echo '<div class="row no-collapse half">';
+                echo '<div class="6u"><a href="/game/'.$featuredGames[$i].'/'.$games[$featuredGames[$i]]['cleanname'].'/" class="image fit"><img src="'.$games[$featuredGames[$i]]["img"].'" alt=""></a></div>';
+
+                echo '<div class="6u"><a href="/game/'.$featuredGames[$i+3].'/'.$games[$featuredGames[$i+3]]['cleanname'].'/" class="image fit"><img src="'.$games[$featuredGames[$i+3]]["img"].'" alt=""></a></div>';
+                echo '</div>';
+                }
+                ?>
+                        </div>
+                    </section>
+                </div>
+            </div>
+            <div class="8u skel-cell-important">
+
+                <div id="sidebar">
+
+                    <section class="last">
+                    <!--
+                    <img src="/img/binary-ios.png" width="305" height="212" />
+                    -->
+                    <h3 class="fa fa-3x">Welcome!</h3>
+                    <br/>
+                    <p class="fa fa-2x"> Dschini is a online gaming community including monthly contests and messaging! </p>
+                    <?php
+                    $slogans = array(
+                    'Now go ahead and get into the bathtub!',
+                    'All Right, Sparky, here is the deal.',
+                    'Well, how about that...',
+                    'Excuse me? Phenomenal cosmic powers!',
+                    'No? I am free. I am free. Quick.'
+                    );
+                    ?>
+                    <p class="fa fa-2x"> <?php echo $slogans[rand(0,count($slogans)-1)]; ?> </p>
+
+                    <div class="6u">
+                        <a href="/lobby/" class="button big fa fa-flash">Play online</a>
+                    </div>
+
+                    </section>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<?php include_once($theme."/html/footer.phtml");?>

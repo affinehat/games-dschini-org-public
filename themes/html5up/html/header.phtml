@@ -1,0 +1,175 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Dschini -  Educational games and Entertainment!</title>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <link href="/css/font-awesome.css" rel="stylesheet" type="text/css" />
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,800" rel="stylesheet" type="text/css" />
+    <link href="http://fonts.googleapis.com/css?family=Oleo+Script:400" rel="stylesheet" type="text/css" />
+
+    <!-- ****** faviconit.com Favicons ****** -->
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="icon" sizes="16x16 32x32 64x64" href="/favicon.ico">
+    <link rel="icon" type="image/png" sizes="196x196" href="/favicon-196.png">
+    <link rel="icon" type="image/png" sizes="160x160" href="/favicon-160.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96.png">
+    <link rel="icon" type="image/png" sizes="64x64" href="/favicon-64.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/favicon-152.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/favicon-144.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/favicon-120.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/favicon-114.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/favicon-76.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/favicon-72.png">
+    <link rel="apple-touch-icon" href="/favicon-57.png">
+    <meta name="msapplication-TileColor" content="#FFFFFF">
+    <meta name="msapplication-TileImage" content="/favicon-144.png">
+    <meta name="msapplication-config" content="/browserconfig.xml">
+    <!-- ****** faviconit.com Favicons ****** -->
+
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/config.js"></script>
+    <script src="/js/skel.min.js"></script>
+    <script src="/js/Chart.min.js"></script>
+    <script type="text/javascript" language="JavaScript">
+        if(top.frames.length > 0){
+            top.location.href=self.location;
+        }
+    </script>
+    <noscript>
+        <link rel="stylesheet" href="/css/skel-noscript.css" />
+        <link rel="stylesheet" href="/css/style.css" />
+        <link rel="stylesheet" href="/css/style-desktop.css" />
+    </noscript>
+    <!--[if lte IE 8]><script src="/js/html5shiv.js"></script><link rel="stylesheet" href="/css/ie8.css" /><![endif]-->
+    <!--[if lte IE 7]><link rel="stylesheet" href="/css/ie7.css" /><![endif]-->
+</head>
+<body>
+<!--
+    <ul class="menu" style="float:left;width:40%;">
+
+
+      <?php if( RequestHelper::getInstance()->isController('pageController')
+      			&& RequestHelper::getInstance()->isAction('indexAction') ){ ?>
+      <li class="current_page_item"><a href="/" title="Games">Games</a></li>
+      <?php } else { ?>
+      <li class="page_item"><a href="/" title="Games">Games</a></li>
+      <?php } ?>
+      
+      
+      <?php if( RequestHelper::getInstance()->isController('pageController')
+      			&& RequestHelper::getInstance()->isAction('gameAction') ){ ?>
+      &rarr;
+      <li class="current_page_item">
+      <a href="/game/<?php echo $swf_id ?>/<?php echo $cleanname ?>/" title="<?php echo $game_name; ?>"><?php echo $game_name; ?></a>
+      </li>
+      <?php } else if(RequestHelper::getInstance()->isController('gameController')) { ?>
+      &rarr;
+      <li class="page_item">
+      <a href="/game/<?php echo $swf_id ?>/<?php echo $cleanname ?>/" title="<?php echo $game_name; ?>"><?php echo $game_name; ?></a>
+      </li>
+      <?php } else {} ?>
+      
+      
+      <?php if( RequestHelper::getInstance()->isController('gameController') ){ ?>
+      <li class="current_page_item">
+	  &rarr;
+	  <?php if(RequestHelper::getInstance()->isAction('playByGameIdAction')){ ?>
+      <a href="/play/<?php echo $swf_id ?>/<?php echo $cleanname ?>/" title="Play <?php echo $game_name; ?>">Play</a>
+      <?php } ?>
+	  <?php if(RequestHelper::getInstance()->isAction('scoresByGameIdAction')){ ?>
+      <a href="/scores/<?php echo $swf_id ?>/0/" title="Play <?php echo $game_name; ?>">Scores</a>
+      <?php } ?>
+	  <?php if(RequestHelper::getInstance()->isAction('winnersByGameIdAction')){ ?>
+      <a href="/winners/<?php echo $swf_id ?>/<?php echo $cleanname ?>/" title="Play <?php echo $game_name; ?>">Winners</a>
+      <?php } ?>
+      </li>
+      <?php } ?>
+    </ul>
+	<ul class="menu" style="float:right;width:40%;text-align:right;">
+		<?php if(isset($_SESSION['user'])) { ?>
+ 		<li class="page_item">
+		<a href="/profile/">Hello <?php echo $_SESSION['user']; ?>
+		</li>
+		<?php if(isset($_SESSION['approved'])){ ?>
+		<li class="page_item"><a href="/logout/">Logout</a></li>
+		<?php } ?>
+		<?php if(!isset($_SESSION['approved'])){ ?>
+		&larr; <a href="/register/" style="color:red;">This name is yours?</a>
+		<?php } ?>
+		<?php } else { ?>
+		<li class="account_panel_item" style="float:right;"><a style="color:black;" href="/login/" title="Login">Click here to login!</a></li>
+		<?php } ?>
+	</ul>
+-->
+
+
+
+<!-- Header Wrapper -->
+<div id="header-wrapper">
+    <div class="container">
+        <div class="row">
+            <div class="12u">
+
+                <!-- Header -->
+                <header id="header">
+
+                    <!-- Logo -->
+                    <div id="logo">
+                        <?php if(isset($_SESSION['user']) && $_SESSION['approved']==1) { ?>
+                            <a href="/lobby/"><img src="/img/dschini_medium.png" /></a>
+                        <?php } else { ?>
+                            <a href="/"><img src="/img/dschini_medium.png" /></a>
+                        <?php } ?>
+                    </div>
+
+                    <!-- Nav -->
+                    <nav id="nav">
+
+                        <ul>
+                            <li><a href="/lobby/">Play</a></li>
+                            <!--<li><a href="/dashboard/">Play</a></li>-->
+                            <?php if(isset($_SESSION['user'])) { ?>
+                                <li><a href="/chat/">Chat</a></li>
+
+                                <li><a href="/inbox/">Messages <span id="inboxCount"></span></a></li>
+                                <!--<li><a href="/profile/">Settings</a></li>-->
+                                <?php if(isset($_SESSION['approved'])){ ?>
+                                    <li><a href="/logout/">Logout</a></li>
+                                <?php } ?>
+                                <?php if(!isset($_SESSION['approved'])){ ?>
+                                    <li class="current_page_item"><a href="/register/"><?php echo $_SESSION['user']; ?>, complete your account</a></li>
+                                <?php } ?>
+                            <?php } else { ?>
+                                <li class="current_page_item"><a href="/login/">Sign in</a></li>
+                            <?php } ?>
+                        </ul>
+                    </nav>
+
+                </header>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<?php if(isset($_SESSION['user'])) {
+if(isset($_SESSION['approved'])){ ?>
+<script type="text/javascript" language="JavaScript">
+    (function worker() {
+        $.ajax({
+            url: '/inbox/unread/count/',
+            success: function(data) {
+                $('#inboxCount').html(data);
+            },
+            complete: function() {
+                setTimeout(worker, 1000 * 15);
+            }
+        });
+    })();
+</script>
+<?php }} ?>

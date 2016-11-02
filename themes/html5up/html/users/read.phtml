@@ -1,0 +1,66 @@
+<?php include_once($theme."/html/header.phtml");?>
+
+<!-- Main Wrapper -->
+<div id="main-wrapper">
+    <div class="container">
+        <div class="row">
+            <div class="4u">
+
+                <!-- Sidebar -->
+                <div id="sidebar">
+
+                    <section>
+                        <h3>&nbsp;</h3>
+                        <div class="grid">
+                            <div class="row no-collapse half">
+                                <div class="9u"><a class="button fa fa-inbox" href="/inbox/">Inbox</a></div>
+                            </div>
+                            <div class="row no-collapse half">
+                                <div class="9u"><a class="button fa fa-archive" href="/outbox/">Outbox</a></div>
+                            </div>
+                            <div class="row no-collapse half">
+                                <div class="9u"><a class="button alt fa fa-trash-o" href="/trashbox/">Trashbox</a></div>
+                            </div>
+                        </div>
+                    </section>
+
+                </div>
+
+            </div>
+            <div class="8u">
+
+                <!-- Content -->
+                <div id="content">
+                    <article class="last">
+                        <h2 class="fa fa-2x">Message from <?php echo $message->sender; ?></h2>
+                        <p><?php echo $message->created; ?></p>
+                        <h3><?php echo $message->subject; ?></h3>
+                        <p><?php echo nl2br($message->body); ?></p>
+
+                        <div class="row no-collapse half">
+                            <?php if($message->box==1){ ?>
+                            <div class="9u"><a class="button alt fa fa-mail-reply" href="/compose/<?php echo $message->sender; ?>/<?php echo $message->id; ?>/">
+                                    Reply to this message
+                                </a></div>
+                            <?php } ?>
+                        </div>
+                        <div class="row no-collapse half">
+                            <div class="9u"><a class="button alt fa fa-trash-o" href="/trash/<?php echo $message->id; ?>/">
+                                    <?php if($message->box==3){ ?>
+                                        Delete
+                                    <?php } else { ?>
+                                        Put into Trashbox
+                                    <?php } ?>
+                                </a></div>
+                        </div>
+
+                    </article>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<?php include_once($theme."/html/footer.phtml");?>
+

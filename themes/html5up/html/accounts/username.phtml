@@ -1,0 +1,84 @@
+<?php include_once($theme."/html/header.phtml");?>
+
+<!-- Main Wrapper -->
+<div id="main-wrapper">
+    <div class="container">
+        <div class="row">
+            <div class="4u">
+
+                <!-- Sidebar -->
+                <div id="sidebar">
+                    <section class="widget-links">
+                        <h3>Related Options</h3>
+                        <div class="grid">
+                            <div class="row no-collapse half">
+                                <div class="9u"><a class="button" href="/lostpassword/">Reset password</a></div>
+                            </div>
+                            <div class="row no-collapse half">
+                                <div class="9u"><a class="button" href="/register/">Create Account</a></div>
+                            </div>
+                            <div class="row no-collapse half">
+                                <div class="9u"><a class="button" href="/login/">Sign in</a></div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+
+            </div>
+            <div class="8u">
+
+                <!-- Content -->
+                <div id="content">
+                    <section class="last">
+
+                        <h2>Username for Highscore!</h2>
+
+                        <form id="form" method="post" action="">
+
+                            <div class="header">
+                                <?php
+                                $style=' style="" ';
+                                ?>
+                                <?php if(count($error)>0){ ?>
+                                    <h3>Ooops!</h3>
+                                    <?php
+                                    if(isset($error)){
+                                        $style=' style="background:#ff0000;" ';
+                                        ?>
+                                        <h2 style="color: #ff0000;"><?php echo $error; ?></h2>
+                                    <?php } ?>
+                                <?php } ?>
+
+                                <h3>Choose a Name!</h3>
+                                <p>
+                                    We require a username to be used for the highscore!
+                                    Must be chars or numbers and length between 4 and 15 and no spaces.
+                                </p>
+
+                            </div>
+
+                            <div class="sep"></div>
+
+                            <div class="inputs">
+
+                                <div>
+                                    <input type="text" name="user" <?php echo $style; ?> placeholder="Username" value="<?php echo $user; ?>" autofocus />
+                                </div>
+
+                                <div>
+                                    <input type="submit" class="button" value="OK, play now &rarr;">
+                                </div>
+
+                            </div>
+
+                        </form>
+
+                    </section>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<?php include_once($theme."/html/footer.phtml");?>

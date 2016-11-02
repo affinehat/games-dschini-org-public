@@ -1,0 +1,212 @@
+<?php include_once($theme."/html/header.phtml");?>
+
+<!-- Main Wrapper -->
+<div id="main-wrapper">
+    <div class="container">
+        <div class="row">
+            <div class="4u">
+
+                <!-- Box -->
+                <section class="box">
+                    <div class="inner">
+                        <header>
+                            <h2 class="fa fa-2x fa-user"> Players</h2>
+                            <!--<span class="byline">This is also an interesting subtitle</span>-->
+                        </header>
+                        <table id="dynamiclogs" style="width:100%;height:100%;"></table>
+                        <script type="text/javascript">
+                            $( "#dynamiclogs" ).load( '/accounts/latest/10/?'+Math.random() );
+                        </script>
+                    </div>
+                </section>
+
+            </div>
+            <div class="4u">
+
+                <!-- Box -->
+                <section class="box">
+                    <div class="inner">
+                        <header>
+                            <h2 class="fa fa-2x fa-comments"> Stream</h2>
+                            <!--<span class="byline">This is also an interesting subtitle</span>-->
+                        </header>
+                        <table id="dynamiclogs3" style="width:100%;height:100%;"></table>
+                        <script type="text/javascript">
+                            $( "#dynamiclogs3" ).load( '/logs/latest/10/?'+Math.random() );
+                        </script>
+                    </div>
+                </section>
+
+            </div>
+            <div class="4u">
+
+                <!-- Box -->
+                <section class="box">
+                    <div class="inner">
+                        <header>
+                            <h2 class="fa fa-2x fa-flag"> Experience</h2>
+                            <!--<span class="byline">This is also an interesting subtitle</span>-->
+                        </header>
+                        <table style="width:100%;height:100%;">
+                            <tr>
+                                <td>
+                                    <ul>
+                                        <?php foreach($randomAccounts as $randomAccount) { ?>
+                                            <li>
+                                                <a class="fa fa-user" href="/player/<?php echo $randomAccount->username; ?>/"> <?php echo $randomAccount->username; ?></a>
+                                                <?php echo AvatarHelper::imglevel($randomAccount->points); ?>
+                                                -
+                                                <?php echo DateFormatHelper::niceShort($randomAccount->created); ?>
+                                            </li>
+                                        <?php } ?>
+                                    </ul>
+
+                                </td>
+                            </tr>
+
+                        </table>
+                    </div>
+                </section>
+
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Features Wrapper -->
+<div id="features-wrapper">
+    <div class="container">
+        <div class="row">
+
+            <?php $others = array(10,6,5); ?>
+            <?php for($i=0; $i<count($others); $i++ ){ ?>
+                <div class="4u">
+
+                    <!-- Box -->
+                    <?php
+                    $last = $i%3==2 ? 'last' : '';
+                    ?>
+                    <section class="box box-feature <?php echo $last; ?>">
+                        <a href="/game/<?php echo $others[$i]; ?>/<?php echo $games[$others[$i]]['cleanname'] ?>/" class="image image-full"><img src="<?php echo $games[$others[$i]]['img'] ?>" alt="" /></a>
+                        <div class="inner">
+                            <header>
+                                <h2 class="fa fa-2x fa-play"> <?php echo $games[$others[$i]]['title'] ?></h2>
+                                <span class="byline"><?php echo $games[$others[$i]]['body'] ?></span>
+                            </header>
+                            <p>
+                                <a class="button small fa fa-gamepad" href="/game/<?php echo $others[$i]; ?>/<?php echo $games[$others[$i]]['cleanname'] ?>/">Play !</a>
+                            </p>
+                            <br/>
+                            <h2 class="fa fa-2x fa-line-chart"> Allstars</h2>
+                            <ul>
+                                <?php $p=0; foreach($overallTopScores[$others[$i]] as $overallTopScore){ $p++; ?>
+                                    <li>
+                                        <?php echo $p; ?> :
+                                        <?php if($overallTopScore['approved']==1){ ?>
+                                            <a class="fa fa-user" href="/player/<?php echo $overallTopScore['user']; ?>/"> <?php echo $overallTopScore['user']; ?></a> :
+                                        <?php } else { ?>
+                                            <?php echo $overallTopScore['user']; ?> :
+                                        <?php } ?>
+                                        <?php echo $overallTopScore['score']; ?>
+                                    </li>
+                                <?php } ?>
+                            </ul>
+                            <p>
+                                <a class="fa fa-arrow-circle-o-right" href="/scores/<?php echo $others[$i]; ?>/0/"> View all scores</a>
+                            </p>
+                        </div>
+                    </section>
+                </div>
+            <?php } ?>
+        </div>
+        <div class="row">
+
+            <?php $others = array(7,8,4); ?>
+            <?php for($i=0; $i<count($others); $i++ ){ ?>
+                <div class="4u">
+
+                    <!-- Box -->
+                    <?php
+                    $last = $i%3==2 ? 'last' : '';
+                    ?>
+                    <section class="box box-feature <?php echo $last; ?>">
+                        <a href="/game/<?php echo $others[$i]; ?>/<?php echo $games[$others[$i]]['cleanname'] ?>/" class="image image-full"><img src="<?php echo $games[$others[$i]]['img'] ?>" alt="" /></a>
+                        <div class="inner">
+                            <header>
+                                <h2 class="fa fa-2x fa-play"> <?php echo $games[$others[$i]]['title'] ?></h2>
+                                <span class="byline"><?php echo $games[$others[$i]]['body'] ?></span>
+                            </header>
+                            <p>
+                                <a class="button small fa fa-gamepad" href="/game/<?php echo $others[$i]; ?>/<?php echo $games[$others[$i]]['cleanname'] ?>/">Play !</a>
+                            </p>
+                            <br/>
+                            <h2 class="fa fa-2x fa-line-chart"> Allstars</h2>
+                            <ul>
+                                <?php $p=0; foreach($overallTopScores[$others[$i]] as $overallTopScore){ $p++; ?>
+                                    <li>
+                                        <?php echo $p; ?> :
+                                        <?php if($overallTopScore['approved']==1){ ?>
+                                            <a class="fa fa-user" href="/player/<?php echo $overallTopScore['user']; ?>/"> <?php echo $overallTopScore['user']; ?></a> :
+                                        <?php } else { ?>
+                                            <?php echo $overallTopScore['user']; ?> :
+                                        <?php } ?>
+                                        <?php echo $overallTopScore['score']; ?>
+                                    </li>
+                                <?php } ?>
+                            </ul>
+                            <p>
+                                <a class="fa fa-arrow-circle-o-right" href="/scores/<?php echo $others[$i]; ?>/0/"> View all scores</a>
+                            </p>
+                        </div>
+                    </section>
+
+                </div>
+            <?php } ?>
+        </div>
+        <div class="row">
+
+            <?php $others = array(3,2,1); ?>
+            <?php for($i=0; $i<count($others); $i++ ){ ?>
+                <div class="4u">
+
+                    <!-- Box -->
+                    <?php
+                    $last = $i%3==2 ? 'last' : '';
+                    ?>
+                    <section class="box box-feature <?php echo $last; ?>">
+                        <a href="/game/<?php echo $others[$i]; ?>/<?php echo $games[$others[$i]]['cleanname'] ?>/" class="image image-full"><img src="<?php echo $games[$others[$i]]['img'] ?>" alt="" /></a>
+                        <div class="inner">
+                            <header>
+                                <h2 class="fa fa-2x fa-play"> <?php echo $games[$others[$i]]['title'] ?></h2>
+                                <span class="byline"><?php echo $games[$others[$i]]['body'] ?></span>
+                            </header>
+                            <p>
+                                <a class="button small fa fa-gamepad" href="/game/<?php echo $others[$i]; ?>/<?php echo $games[$others[$i]]['cleanname'] ?>/">Play !</a>
+                            </p>
+                            <br/>
+                            <h2 class="fa fa-2x fa-line-chart"> Allstars</h2>
+                            <ul>
+                                <?php $p=0; foreach($overallTopScores[$others[$i]] as $overallTopScore){ $p++; ?>
+                                    <li>
+                                        <?php echo $p; ?> :
+                                        <?php if($overallTopScore['approved']==1){ ?>
+                                            <a class="fa fa-user" href="/player/<?php echo $overallTopScore['user']; ?>/"> <?php echo $overallTopScore['user']; ?></a> :
+                                        <?php } else { ?>
+                                            <?php echo $overallTopScore['user']; ?> :
+                                        <?php } ?>
+                                        <?php echo $overallTopScore['score']; ?>
+                                    </li>
+                                <?php } ?>
+                            </ul>
+                            <p>
+                                <a class="fa fa-arrow-circle-o-right" href="/scores/<?php echo $others[$i]; ?>/0/"> View all scores</a>
+                            </p>
+                        </div>
+                    </section>
+
+                </div>
+            <?php } ?>
+        </div>
+    </div>
+</div>
+
+<?php include_once($theme."/html/footer.phtml");?>

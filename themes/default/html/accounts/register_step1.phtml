@@ -1,0 +1,76 @@
+<?php include_once($theme."/html/header.phtml");?>
+
+<div id="sub-page">
+
+<div id="content-wrap">
+ <div id="content">
+  <div class="gap">
+
+   <!-- start -->
+<div class="formin"> 
+<form action="" method="post" id="form"> 
+
+  <?php if(count($error)>0){ ?>
+  <p>
+    <h1 style="color:red;">Ooops!</h1>
+    <h3 style="color:red;">Something is wrong!</h3>
+  </p>
+  <?php } ?>
+  <p>
+    <h2 style="padding-top:10px;border-bottom:1px dotted #ccc;">Create Account!</h2>
+  </p>
+  <p>
+  	By creating an account you'll be able to view the scores.
+  	<br/>
+  	Please enter a username and your email. A valid email is required for activation!
+  </p>
+  <p>
+    <label for="user"><small>Name:</small> <b style="position:relative;z-index:2;top:20px;color:red;font-size:48px;">*</b></label>
+  </p>
+  <p>
+    <input type="text" name="user" id="user" value="<?php echo $user; ?>" maxlength="100" size="40" style="<?php echo isset($error['user'])?'border:1px solid red':''; ?>" /> 
+   </p>
+  <p>
+    <label for="email"><small>Email:</small> <b style="position:relative;z-index:2;top:20px;color:red;font-size:48px;">*</b></label>
+  </p>
+  <p>
+    <input type="text" name="email" id="email" value="<?php echo $email; ?>" maxlength="100" size="40" style="<?php echo isset($error['email'])?'border:1px solid red':''; ?>" /> 
+  </p>
+  <p style="padding-top:10px;">
+   <input type="checkbox" name="informme" value="1" <?php echo $informme==1 ? 'checked="checked"' : ''; ?> />
+   I'd like to receive updates via email on new features, games and more.
+  </p>
+  <p>
+    <!-- nr1 & nr2-->
+    <label for="name"><small>Please answer the following question: </small> <b style="position:relative;z-index:2;top:20px;color:red;font-size:48px;">*</b></label>
+  </p>
+  <p>
+    <b style="font-size:16px"><?php echo $nr1; ?> + <?php echo $nr2; ?> = </b>
+    <input type="hidden" name="nr1" id="nr1" value="<?php echo $nr1; ?>" />
+    <input type="hidden" name="nr2" id="nr2" value="<?php echo $nr2; ?>" />
+    <input type="text" name="total" id="total" value="" size="4" maxlength="3" style="<?php echo isset($error['total'])?'border:1px solid red':''; ?>" /> 
+  </p>
+  <!-- Submit -->
+  <p>
+  By clicking "Sign Up", you agree to adhere to our <a target="_blank" href="/termsconditions/" style="text-decoration:underline;">Terms & Conditions</a>.
+  <br/>
+  We will not share your personal information with third parties for their marketing purposes.
+  </p>
+  <p style="padding-top:10px;">
+   <input name="next" type="submit" id="submit" value="Sign Up &rarr;" /> 
+  </p> 
+  </form> 
+</div> 
+   <!-- end -->
+
+  </div>
+ </div>
+</div>
+
+<?php include_once($theme."/html/accounts/sidebar.phtml");?>
+
+<br class="clear" />
+</div>
+</div>
+
+<?php include_once($theme."/html/footer.phtml");?>

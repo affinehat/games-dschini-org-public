@@ -1,0 +1,15 @@
+<div id="sidebar">
+	<div class="side1">
+		<?php if(isset($_SESSION['accountId'])){ ?>
+		<div class="gapy" id="highscore" style="border:1px dotted #999;padding:5px;background-color:#eee;"> 
+			<?php if($amountCoins<=0){ ?>
+			&rarr; <a href="/coins/">Your don't have coins</a>
+			<?php } else { ?>
+			&rarr; <a href="/coins/">Your have <b><?php echo $amountCoins==1 ? '1 coin' : $amountCoins.' coins'; ?></b></a>
+			<?php } ?>
+		</div>
+		<?php } ?>
+		
+	</div>
+</div>
+ 

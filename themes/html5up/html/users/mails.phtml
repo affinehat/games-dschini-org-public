@@ -1,0 +1,20 @@
+<table width="100%">
+    <tr>
+        <td style="width:15%;border-bottom:1px dotted #999;">Date</td>
+        <td style="width:10%;border-bottom:1px dotted #999;">From</td>
+        <td style="width:10%;border-bottom:1px dotted #999;">To</td>
+        <td style="width:20%;border-bottom:1px dotted #999;">Subject</td>
+        <td style="width:10%;border-bottom:1px dotted #999;">Status</td>
+    </tr>
+    <?php foreach($box as $message) { ?>
+        <tr>
+            <td><?php echo $message->created; ?></td>
+            <td><a href="/player/<?php echo $message->sender; ?>/"><?php echo $message->sender; ?></a></td>
+            <td><a href="/player/<?php echo $message->receiver; ?>/"><?php echo $message->receiver; ?></a></td>
+            <td><a href="/read/<?php echo $message->id; ?>/" style="<?php echo $message->status==1 ? 'font-weight: bold;' : ''; ?>">
+                    <?php echo $message->subject; ?>
+                </a></td>
+            <td><?php echo $message->status; ?></td>
+        </tr>
+    <?php } ?>
+</table>
